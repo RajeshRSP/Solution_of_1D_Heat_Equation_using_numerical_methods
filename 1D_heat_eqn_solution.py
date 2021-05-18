@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+flag=0
 
 method=input("Select a method to solve 1D heat equation\n a.finite difference method \n b.bender schmidt method(λ=0.5) \n c.crank nicolson method \n d.crank nicolson method(λ=1) \n")
 
@@ -71,6 +71,7 @@ if method.upper()=='A':
         # print('grid',grid)
     else:
         print('alpha value exceeds 0.5 ,can not use forward difference difference method')
+        flag=1
 
 
 #--------------------------------------------------------------------------------------------------------------
@@ -364,41 +365,41 @@ if method.upper()=='D':
     #                                                           OUTPUT
     # ------------------------------------------------------------------------------------------------------------------------
 
+if flag==0:
+    print('Temperature of rod at the end of simulation time: ')
+    for i in range(grid_columns):
+        print(grid[0,i],end=" ")
 
-print('Temperature of rod at the end of simulation time: ')
-for i in range(grid_columns):
-    print(grid[0,i],end=" ")
 
+    #Output in graph form
+    #X axis-length ; Y axis-Temperature
+    #Graph shows 5 plots with time difference=simulation time/5
 
-#Output in graph form
-#X axis-length ; Y axis-Temperature
-#Graph shows 5 plots with time difference=simulation time/5
+    if time_nodes>5:
+        X=[]                        
+        Y=[]
+        d=int(time_nodes/5)                                   #divides total time into 5
+        time=t
+        for i in range(0,grid_rows,d):
+        
+            X.append(0)                                         
+            Y.append(T1)
+        
+            for j in range(1,length_nodes+1):
+                
+                Y.append(grid[i,j])
+                X.append(j*dx)
 
-if time_nodes>5:
-    X=[]                        
-    Y=[]
-    d=int(time_nodes/5)                                   #divides total time into 5
-    time=t
-    for i in range(0,grid_rows,d):
-    
-        X.append(0)                                         
-        Y.append(T1)
-    
-        for j in range(1,length_nodes+1):
-            
-            Y.append(grid[i,j])
-            X.append(j*dx)
-
-        Y.append(T2)
-        X.append((length_nodes+1)*dx) 
-    
-        s="at t ="+str(time)
-        plt.plot(X,Y,label=s) 
-        time=round((time-(dt*d)),2)
-        X.clear()
-        Y.clear()
-    plt.legend()
-    plt.show()
+            Y.append(T2)
+            X.append((length_nodes+1)*dx) 
+        
+            s="at t ="+str(time)
+            plt.plot(X,Y,label=s) 
+            time=round((time-(dt*d)),2)
+            X.clear()
+            Y.clear()
+        plt.legend()
+        plt.show()
 
     
 
