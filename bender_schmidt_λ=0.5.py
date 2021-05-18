@@ -20,9 +20,9 @@ alpha= 0.5
 
 #calculating number of rows and columns for the grid which will show temperature at a node n at time t
 
-m=time_nodes+1
-n=length_nodes+2
-grid=np.zeros((m,n))
+grid_rows=time_nodes+1
+grid_columns=length_nodes+2
+grid=np.zeros((grid_rows,grid_columns))
 
 #initialising the grid with initial and boundary conditions
 
@@ -30,7 +30,7 @@ print('Enter boundary conditions(in celcius')
 T1=int(input('Enter surface 1 temperature: '))
 T2=int(input('Enter surface 2 temperature: '))
 
-for i in range(m):
+for i in range(grid_rows):
     grid[i,0]=T1
     grid[i,length_nodes+1]=T2
 t_initial=int(input('Enter initial rod temperature: '))
@@ -63,7 +63,7 @@ for i in range(time_nodes,0,-1):
 # ----------------------------------------------------------
 
 print('Temperature of rod at the end of simulation time: ')
-for i in range(n):
+for i in range(grid_columns):
     print(grid[0,i],end=" ")
 
 #Output in graph form
@@ -75,7 +75,7 @@ if time_nodes>5:
     Y=[]
     d=int(time_nodes/5)                                                 #divides total time into 5
     time=t 
-    for i in range(time_nodes,-1,-d):
+    for i in range(0,grid_rows,d):
         
         X.append(0)
         Y.append(T1)
