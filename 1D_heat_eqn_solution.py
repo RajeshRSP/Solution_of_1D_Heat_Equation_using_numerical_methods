@@ -393,8 +393,10 @@ if flag==0:
             Y.append(T2)
             X.append((length_nodes+1)*dx) 
         
-            s="at t ="+str(time)
+            s="at t ="+str(time)+"s"
             plt.plot(X,Y,label=s) 
+            plt.xlabel("Bar length")
+            plt.ylabel("Temperature")
             time=round((time-(dt*d)),2)
             X.clear()
             Y.clear()
