@@ -88,7 +88,7 @@ if alpha<=0.5:
         Y=[]
         d=int(time_nodes/5)                                   #divides total time into 5
         time=t
-        for i in range(time_nodes,-1,-d):
+        for i in range(0,grid_rows,d):
         
             X.append(0)                                         
             Y.append(T1)
