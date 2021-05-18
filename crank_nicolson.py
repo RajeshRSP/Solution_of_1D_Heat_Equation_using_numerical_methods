@@ -27,12 +27,12 @@ grid=np.zeros((m,n))
 #initialising the grid with initial and boundary conditions
 
 print('Enter boundary conditions(in celcius)')
-t1=int(input('Enter surface 1 temperature: '))
-t2=int(input('Enter surface 2 temperature: '))
+T1=int(input('Enter surface 1 temperature: '))
+T2=int(input('Enter surface 2 temperature: '))
 
 for i in range(m):
-    grid[i,0]=t1
-    grid[i,length_nodes+1]=t2
+    grid[i,0]=T1
+    grid[i,length_nodes+1]=T2
 t_initial=int(input('Enter initial rod temperature: '))
 for i in range(1,length_nodes+1):
     grid[time_nodes,i]=t_initial
@@ -54,7 +54,7 @@ left_matrix[length_nodes-1][length_nodes-1]=diag
 
 # -------------------------------------------------------------------------------------------------------------------------
 #                                                      CALCULATION
-# ------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -123,14 +123,14 @@ if time_nodes>5:
     for i in range(0,m,d):
 
         X.append(0)
-        Y.append(t1)
+        Y.append(T1)
         
         for j in range(1,length_nodes+1):
             
             Y.append(grid[i,j])
             X.append(j*dx)
 
-        Y.append(t2)
+        Y.append(T2)
         X.append((length_nodes+1)*dx) 
 
         s="at t ="+str(time)
